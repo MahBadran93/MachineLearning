@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
 
+
 from nibabel.testing import data_path 
 
 dataPath = 'training/patient001/patient001_4d.nii.gz' # path for 4d image 

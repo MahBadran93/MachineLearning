@@ -72,6 +72,7 @@ ani = animation.FuncAnimation(fig, updatefig, frames=range(20),
 
 
 plt.show()    
+print(trainingImg1)
 
 """
 for y in range(29):

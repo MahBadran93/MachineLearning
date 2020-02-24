@@ -7,4 +7,5 @@ def update(nuralsData, inputData, learningRate):
     for i in range(len(inputData)):
         #np.copyto(updatedValues[i],nuralsData[i] + learningRate*(inputData[i] - nuralsData[i]))
         updatedValues[i] =  nuralsData[i] + learningRate*(inputData[i] - nuralsData[i])
+        #print("nuralsData : ", i, nuralsData[i] , "learnRate" , learningRate , " inputData",i , inputData[i] )
     return updatedValues

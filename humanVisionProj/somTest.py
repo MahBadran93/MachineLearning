@@ -3,9 +3,10 @@ import matplotlib.pyplot as plt
 import EuclDistance as dis
 import MinNeural as winMin
 import UpdateWeight as updWeight
+
 ###########################################
 inputTestData = [
-    [0,0,0,0.9],
+    [0.7,0.9,0,0],
     [0,0,0.8,0.9],
     [0.7,0,0,0],
     [0.7,0.9,0,0]

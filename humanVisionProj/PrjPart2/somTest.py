@@ -20,7 +20,7 @@ trainingData = [
 trainData = np.array(trainingData) # make numpy array of out input 
 testData = np.array(testingData)
 weightData = np.array([[.2, .6, .5, .9],[.8, .4, .7, .3]])
-
+#weightData = np.random.rand()
 print("before trained:", weightData)
 
 
@@ -32,10 +32,13 @@ below to create a random data points (map), and we will start comparing the inpu
 
 ###############################################
 
-learningRate = 0.3
+learningRate = 0.6
 iteration = 1000
 
+
+# give the train data function a weight matrix and a train data to process 
 weightData = Train.trainData(weightData,trainData,iteration,learningRate)
+
 print("trained:", weightData)
 
 print("TESTING.................")

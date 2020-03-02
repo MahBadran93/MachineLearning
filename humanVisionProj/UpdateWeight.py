@@ -1,11 +1,12 @@
 import numpy as np 
 
 
-def update(nuralsData, inputData, learningRate):
+def update(weightData, trainingData, learningRate):
+    # weightData : parameter to pass the weightData winner vector for weighData array, weightData[winner].
+    # trainingData : parameter to pass the trainingData[index], index of trainingData we are testing currently.
+    # learningRate : pass the learingRate.
+
     updatedValues = [0,5,0,0] # initalize
-    #updatedValues =np.array([5,2,0,0])
-    for i in range(len(inputData)):
-        #np.copyto(updatedValues[i],nuralsData[i] + learningRate*(inputData[i] - nuralsData[i]))
-        updatedValues[i] =  nuralsData[i] + learningRate*(inputData[i] - nuralsData[i])
-        #print("nuralsData : ", i, nuralsData[i] , "learnRate" , learningRate , " inputData",i , inputData[i] )
-    return updatedValues
+    for i in range(len(trainingData)):
+        updatedValues[i] =  weightData[i] + learningRate*(trainingData[i] - weightData[i])
+    return updatedValues # it returns an updated weight data for winner part

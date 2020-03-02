@@ -54,11 +54,13 @@ return segmented slices individually from 0 - 9
 #################################################################################
 
 imgRe = loadNifti('training/patient001/patient001_4d.nii.gz')
-imgGT = loadNifti('training/patient001/patient001_frame01_gt.nii.gz')
+imgGT = loadNifti('training/patient001/patient001_frame01.nii.gz')
 
 
-displayAnimatedNifti(imgRe,5)
-displaySegmentedGTSlices(imgGT,9) 
+#displayAnimatedNifti(imgRe,5)
+displaySegmentedGTSlices(imgGT,5) 
+
+#print(imgGT.shape)
 
 
 

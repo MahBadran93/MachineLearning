@@ -37,8 +37,8 @@ niftiImage : image loaded from nii.gz file 4d, it has 10 slices, from 0-9 , each
 sliceNum1 : number of slice from 0 - 9
 """
 ##############################################################################
-def displaySegmentedGTSlices(imageGT,sliceNum):
-    plt.imshow(sliceGTFile(imageGT,sliceNum))
+def displaySlices(imageGT,sliceNum):
+    plt.imshow(getSlice(imageGT,sliceNum))
     plt.show()
 """
 imageGT : image loaded fron GT file 
@@ -46,19 +46,27 @@ sliceNum : it has 10 slices , from 0-9
 """
 ###############################################################################
 
-def sliceGTFile(imgGT,numOfSlice):
-    return imgGT[:,:,numOfSlice]
+def getSlice(image,numOfSlice):
+    if(numOfSlice >= image.shape[2]):
+        print("number of slices is only", image.shape[2])
+        return 0
+    else:    
+        return image[:,:,numOfSlice]
 """
-return segmented slices individually from 0 - 9 
+return segmented slices individually for every specific image  
 """
 #################################################################################
 
-imgRe = loadNifti('training/patient001/patient001_4d.nii.gz')
-imgGT = loadNifti('training/patient001/patient001_frame01.nii.gz')
+imgRe = loadNifti('../training/patient001/patient001_frame12.nii.gz')
+imgGT = loadNifti('../training/patient001/patient001_frame12_gt.nii.gz')
 
-
+print(imgRe.shape , imgGT.shape)
 #displayAnimatedNifti(imgRe,5)
-displaySegmentedGTSlices(imgGT,5) 
+
+#getSlice(imgRe,9)
+for i in range(imgGT.shape[2]):
+    displaySlices(imgGT,i) 
+#displaySegmentedGTSlices(imgRe,5)
 
 #print(imgGT.shape)
 

@@ -3,34 +3,42 @@ import pandas as pd
 import csv
 from io import StringIO
 import matplotlib.pyplot as plt
+import MinWeightData as WinnerData
+import TrainData as Train
 
 
 control = pd.read_fwf('control.txt')
 patient = pd.read_fwf('patient.txt')
 
+
 patientData = np.array(patient)
 controlData = np.array(control)
 
+trainData = np.concatenate((patientData,controlData), axis=0)
+print(trainData.shape)
+
+weightData = np.random.rand(2 , 650)
+
+iteration = 100
+learningRate = 0.6
+
 #patientNoEmptyValues = np.array(patientData[patientData!=0])
 #patieNotZeros = np.argwhere(patientData)
-print(patientData[0:1,30:40])
 
 fig = plt.figure(figsize=(20,10))
 figp = fig.subplots(2,2,gridspec_kw={'width_ratios': [8, 3]})
 
-figp[0,0].imshow(patientData[0:1,:])
-figp[0,1].imshow(patientData[0:1,20:60])
+figp[0,0].imshow(trainData[15:16,20:30])
 
-figp[1,0].imshow(controlData[2:3,20:30])
-figp[1,1].imshow(controlData[3:4,40:50])
 
-# add slices check edited git 
 
-tt = np.array([[99,  5,  2,  4],
- [ 7,  6,  8,  8],
- [ 1,  6,  7,  7]])
+weightDataEnd = Train.trainData(weightData,trainData,iteration,learningRate)
+print(weightData[1,25])
 
-#print(patientData[9])
+
+figp[0,1].imshow(weightDataEnd[1:2,20:30])
+
+
 
 """
 for i in range(int(patientData.shape[1]/10.0)):
@@ -38,7 +46,19 @@ for i in range(int(patientData.shape[1]/10.0)):
     plt.pause(0.1)
     i = i + 10
 """
+"""
+print("TESTING.................")
+def test():
+    index = 0
+    for t in range(testData.shape[0]):
+        #winnerF = WinnerData.min(weightData, trainData[t],index)
+        winnerTest = WinnerData.min(weightData,testData[t],index,weightData.shape[0])
+        print(' class:', winnerTest , 'testData:', testData[t])        
+       
 
 
+
+"""
 plt.show()
+
 

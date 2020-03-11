@@ -8,7 +8,7 @@ def trainData(weightData, trainData, iteration, learningRate):
     for i in range(iteration):
         for j in range (trainData.shape[0]):
             # trainData.shape[0] : number of training data i have
-            winner = WinnerVector.min(weightData, trainData[j] , index, weightData.shape[0])
+            winner = WinnerVector.min(weightData, trainData[j] , index)
             updatedVector = Updt.update(weightData[winner], trainData[j], learningRate)
             weightData[winner] = updatedVector
         learningRate = learningRate * 0.5

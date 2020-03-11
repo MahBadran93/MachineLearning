@@ -1,7 +1,6 @@
 import numpy as np 
 import matplotlib.pyplot as plt 
-import MinWeightData as WinnerData
-import TrainData as Train
+import Funcs as F
  
 
 ###########################################
@@ -33,11 +32,11 @@ below to create a random data points (map), and we will start comparing the inpu
 ###############################################
 
 learningRate = 0.6
-iteration = 1000
+iteration = 5
 
 
 # give the train data function a weight matrix and a train data to process 
-weightData = Train.trainData(weightData,trainData,iteration,learningRate)
+weightData = F.trainData(weightData,trainData,iteration,learningRate)
 
 print("trained:", weightData)
 
@@ -46,7 +45,7 @@ def test():
     index = 0
     for t in range(testData.shape[0]):
         #winnerF = WinnerData.min(weightData, trainData[t],index)
-        winnerTest = WinnerData.min(weightData,testData[t],index,weightData.shape[0])
+        winnerTest = F.min(weightData,testData[t])
         print(' class:', winnerTest , 'testData:', testData[t])        
        
 test()

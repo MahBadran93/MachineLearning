@@ -19,7 +19,7 @@ print(trainData.shape)
 
 weightData = np.random.rand(2 , 650)
 
-iteration = 100
+iteration = 600
 learningRate = 0.6
 
 #patientNoEmptyValues = np.array(patientData[patientData!=0])
@@ -46,19 +46,21 @@ for i in range(int(patientData.shape[1]/10.0)):
     plt.pause(0.1)
     i = i + 10
 """
-"""
+
 print("TESTING.................")
+testData = trainData[1]
+
 def test():
     index = 0
-    for t in range(testData.shape[0]):
+    for t in range(trainData.shape[0]):
         #winnerF = WinnerData.min(weightData, trainData[t],index)
-        winnerTest = WinnerData.min(weightData,testData[t],index,weightData.shape[0])
-        print(' class:', winnerTest , 'testData:', testData[t])        
+        winnerTest = WinnerData.min(weightDataEnd,trainData[t],index)
+        print(' class:', winnerTest)        
        
 
 
 
-"""
-plt.show()
+test()
+#plt.show()
 
 

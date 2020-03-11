@@ -12,4 +12,8 @@ def trainData(weightData, trainData, iteration, learningRate):
             updatedVector = Updt.update(weightData[winner], trainData[j], learningRate)
             weightData[winner] = updatedVector
         learningRate = learningRate * 0.5
-    return weightData # return the trained weight     
+    return weightData # return the trained weight  
+
+    """
+
+    """   

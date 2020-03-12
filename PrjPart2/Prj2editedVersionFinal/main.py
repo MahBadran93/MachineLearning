@@ -9,12 +9,13 @@ import Funcs as F
 #----------------------Read Data Set -------------------------------
 control = pd.read_fwf('control.txt', header = None, delimiter="\t")
 patient = pd.read_fwf('patient.txt', header = None, delimiter="\t")
-test = pd.read_fwf('Test/test_five.txt', header = None, delimiter="\t")
-
+test = np.loadtxt('Test/test_five.txt')
+#test = pd.read_fwf('Test/test_five.txt', header = None, delimiter="\t")
 #----------------------Shape Data set as arrays --------------------
 patientData = np.array(patient)
 controlData = np.array(control)
 testData =  np.array(test)
+print(testData.shape)
 #----------------------Concatenate data vertically------------------
 trainData = np.vstack((patientData,controlData))
 #print(trainData.shape)
@@ -37,10 +38,10 @@ weightDataEnd = F.trainData(weightData,trainData,iteration,learningRate)
 
 
 
-print(testData.shape)
+#print(testData.shape)
 
 #........................TESTING..............................................
-#F.Test(trainData[1] , weightDataEnd)
+F.Test(test , weightDataEnd)
 
 
 

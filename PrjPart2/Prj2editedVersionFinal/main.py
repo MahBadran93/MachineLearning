@@ -3,6 +3,7 @@ import pandas as pd
 import csv
 from io import StringIO
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as grid
 
 import Funcs as F
 
@@ -26,19 +27,21 @@ iteration = 500
 learningRate = 0.6
 #-------------------------------------------------------------------
 
-#-------------Plot Results -----------------------------------------
-fig = plt.figure(figsize=(20,10))
-figp = fig.subplots(2,2,gridspec_kw={'width_ratios': [8, 3]})
-
-figp[0,0].imshow(trainData[15:16,20:30])
-figp[0,1].imshow(weightData[1:2,20:30])
-#plt.show()
 #--------------------------Training---------------------------------
 weightDataEnd = F.trainData(weightData,trainData,iteration,learningRate)
 
+#-------------Plot Results -----------------------------------------
+fig = plt.figure(constrained_layout=True,figsize=(20,10))
+gs = grid.GridSpec(1, 2,width_ratios=[2,2])
+#figp = fig.subplots(2,2,gridspec_kw={'width_ratios': [8, 3]})
+ax1 = plt.subplot(gs[0])
+ax2 = plt.subplot(gs[1])
+#figp[0,0].title.set_text('Training Data(Patients, Controls')
+ax1.imshow(trainData)
+ax2.imshow(weightDataEnd)
+plt.show()
 
 
-#print(testData.shape)
 
 #........................TESTING..............................................
 F.Test(test , weightDataEnd)

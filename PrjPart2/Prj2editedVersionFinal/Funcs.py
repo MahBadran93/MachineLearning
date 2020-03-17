@@ -43,14 +43,20 @@ def trainData(weightData, trainData, iteration, learningRate):
     for i in range(iteration):
         for subj in range (trainData.shape[0]):
             # trainData.shape[0] : number of training data i have
-            winner = min(weightData, trainData[subj])
+            winner = min(weightData, trainData[subj]) # return the index of winner in the weighted data
             updatedVector = update(weightData[winner], trainData[subj], learningRate)
-            weightData[winner] = updatedVector
+            weightData[winner] = updatedVector # update weight data winner with new one 
         learningRate = learningRate * 0.5
     return weightData # return the trained weight     
 
 #==================================================================================
 def Test(testData , traindWeight):
+    """
+        this function takes the test data and the trained weight data, 
+        and then clasify each test data.
+    """
     for i in range(testData.shape[0]):
         winnerTest = min(traindWeight,testData[i])
-        print(' class:', winnerTest)
+        print(' Test data:', i, 'belongs to : ', winnerTest)
+
+

@@ -5,46 +5,67 @@ from io import StringIO
 import matplotlib.pyplot as plt
 import matplotlib.gridspec as grid
 
-import Funcs as F
+import Funcs as F # import Fncs.py file which includes all the main functios needed
 
 #----------------------Read Data Set -------------------------------
 control = pd.read_fwf('control.txt', header = None, delimiter="\t")
 patient = pd.read_fwf('patient.txt', header = None, delimiter="\t")
-test = np.loadtxt('Test/test_five.txt')
-#test = pd.read_fwf('Test/test_five.txt', header = None, delimiter="\t")
+test = np.loadtxt('Test/badran.txt')
+
 #----------------------Shape Data set as arrays --------------------
 patientData = np.array(patient)
 controlData = np.array(control)
 testData =  np.array(test)
-print(testData.shape)
+print('shape of the test data: ' , testData.shape)
+
 #----------------------Concatenate data vertically------------------
-trainData = np.vstack((patientData,controlData))
-#print(trainData.shape)
+trainData = np.vstack((patientData,controlData)) #patient : 0 , control : 1
+
 #--------------------Generate Random weight data -------------------
-weightData = np.random.rand(2 , 650)
+
+#weightData = np.random.rand(2 , 650)
+#np.savetxt('weightData.txt',weightData , fmt='%s')
+"""
+wanted a fixed weight data, so at first I created random weightdata with shape (2 , 650),
+the I saved it into a weightData.txt file, beccause I don't want the weightdata to be changed
+every run
+"""
+weightDataLoad = np.loadtxt('weightData.txt')
+weightData = np.array(weightDataLoad)
+print('weight data shape  :' , weightData.shape)
+
 #---------- set initial Parameters ---------------------------------
-iteration = 500
+iteration = 6
 learningRate = 0.6
 #-------------------------------------------------------------------
 
 #--------------------------Training---------------------------------
 weightDataEnd = F.trainData(weightData,trainData,iteration,learningRate)
+np.savetxt('weightDataend.txt',weightDataEnd , fmt='%s')
 
 #-------------Plot Results -----------------------------------------
 fig = plt.figure(constrained_layout=True,figsize=(20,10))
-gs = grid.GridSpec(1, 2,width_ratios=[2,2])
-#figp = fig.subplots(2,2,gridspec_kw={'width_ratios': [8, 3]})
+gs = grid.GridSpec(2, 2,width_ratios=[2,2])
 ax1 = plt.subplot(gs[0])
 ax2 = plt.subplot(gs[1])
-#figp[0,0].title.set_text('Training Data(Patients, Controls')
-ax1.imshow(trainData)
-ax2.imshow(weightDataEnd)
-plt.show()
-
-
+ax3 = plt.subplot(gs[2])
+ax4 = plt.subplot(gs[3])
+ax1.set_title('training data(patient from 0-10 rows, control from 10-20 rows)')
+ax1.imshow(trainData[:,100:150])
+ax2.set_title('testing data: ')
+ax2.imshow(testData[:,100:150])
+ax3.set_title('weightData before training: ')
+ax3.imshow(weightData[:,100:150])
+ax4.set_title('weightData Trained: ')
+ax4.imshow(weightDataEnd[:,100:150])
+#plt.show() 
+# here I was just trying to visualize the data and test 
+#..............................................................................
 
 #........................TESTING..............................................
-F.Test(test , weightDataEnd)
+F.Test(testData , weightDataEnd)
+
+
 
 
 

@@ -14,7 +14,6 @@ def EcuDist(trainDataVector, weightDataVector):
     # weightDataVector: pass the weight data vector 
     resultSum = np.sum((trainDataVector-weightDataVector)**2)
     return resultSum    
-    # it returns the Ecu. distance between two passed vectors.
 #==========================================================================================================
 """
 this function returns the index of winner in the weigted matrix(closest match with dataSetVector vector),
@@ -36,10 +35,11 @@ def min(weightData , dataSetVector ):
             winnerIndex = i
     return winnerIndex 
      
-    # return the index of winner vector in the weigted matrix nural,
-    # nuralsDataArray, return either 0 or 1, class I, or class II
-
 #==================================================================================
+"""
+This function returns a final trained weight data 
+
+"""
 def trainData(weightData, trainData, iteration, learningRate):
     for i in range(iteration):
         for subj in range (trainData.shape[0]):
